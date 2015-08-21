@@ -24,16 +24,16 @@ const listeners : any = {
 
 
 // Handle* objects
-let handlesCharacter : HandlesCharacter = new HandlesCharacter();
-let handlesEnemyTarget : HandlesEnemyTarget = new HandlesEnemyTarget();
-let handlesFriendlyTarget : HandlesFriendlyTarget = new HandlesFriendlyTarget();
+const handlesCharacter : HandlesCharacter = new HandlesCharacter();
+const handlesEnemyTarget : HandlesEnemyTarget = new HandlesEnemyTarget();
+const handlesFriendlyTarget : HandlesFriendlyTarget = new HandlesFriendlyTarget();
 
 // Event Emitter
-let emitter : EventEmitter = new EventEmitter();
+const emitter : EventEmitter = new EventEmitter();
 
 // register for an event group
 function on(topic : string, callback : (info : any) => void) : any {
-    var listener = listeners[topic];
+    const listener = listeners[topic];
     if (listener && !listener.listening) {
         listener.start(emitter);
     }

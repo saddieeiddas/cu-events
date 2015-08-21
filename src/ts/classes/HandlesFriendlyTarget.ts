@@ -8,7 +8,7 @@ export default class HandlesFriendlyTarget {
 	name: string;
 	action: any;
     constructor() {
-        this.name = "friendlytarget";
+        this.name = 'friendlytarget';
         this.action = FriendlyTargetAction;
     }
     start() {

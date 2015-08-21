@@ -5,10 +5,10 @@
  */
 import { EnemyTarget as EnemyTargetAction } from '../actions/main';
 export default class HandlesEnemyTarget {
-	name : string;
-	action : any;
+	name: string;
+	action: any;
     constructor() {
-        this.name = "enemytarget";
+        this.name = 'enemytarget';
         this.action = EnemyTargetAction;
     }
     start() {

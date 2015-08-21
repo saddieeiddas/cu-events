@@ -7,10 +7,10 @@ import EventEmitter from '../classes/EventEmitter';
 import * as core from 'cu-core';
 import { race as Race } from 'cu-core';
 
-declare var cuAPI: any;
+declare const cuAPI: any;
 
 function run(emitter : EventEmitter, type: string) {
-	var info : any = {},
+	const info : any = {},
 		topic : string = type.toLowerCase();
 
 	// Event receivers
@@ -38,18 +38,18 @@ function run(emitter : EventEmitter, type: string) {
 
 	// Hook up event receivers to the relevant cuAPI methods
 	switch(type) {
-		case "Character":
+		case 'Character':
 			cuAPI.OnCharacterNameChanged(nameChanged);
 			cuAPI.OnCharacterRaceChanged(raceChanged);
 			cuAPI.OnCharacterHealthChanged(healthChanged);
 			cuAPI.OnCharacterStaminaChanged(staminaChanged);
 			break;
-		case "EnemyTarget":
+		case 'EnemyTarget':
 			cuAPI.OnEnemyTargetNameChanged(nameChanged);
 			cuAPI.OnEnemyTargetHealthChanged(healthChanged);
 			cuAPI.OnEnemyTargetStaminaChanged(staminaChanged);
 			break;
-		case "FriendlyTarget":
+		case 'FriendlyTarget':
 			cuAPI.OnFriendlyTargetNameChanged(nameChanged);
 			cuAPI.OnFriendlyTargetHealthChanged(healthChanged);
 			cuAPI.OnFriendlyTargetStaminaChanged(staminaChanged);

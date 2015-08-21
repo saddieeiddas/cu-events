@@ -18,9 +18,9 @@ export default class EventEmitter {
     }
 
     addListener(topic: string, callback: (data: any) => void) : any {
-        let listeners : Listener [] = this.events[topic]  = this.events[topic] || [];
-        let i: number = listeners.indexOf(null),
-            listener : Listener = new Listener(topic, callback);
+        const listeners : Listener [] = this.events[topic]  = this.events[topic] || [];
+        const listener : Listener = new Listener(topic, callback);
+        let i: number = listeners.indexOf(null);
         if (i === -1) {
             listeners.push(listener);
         } else {
@@ -30,7 +30,7 @@ export default class EventEmitter {
     }
 
     removeListener(listener: any) : void {
-        let listeners: Listener[] = this.events[listener.topic];
+        const listeners: Listener[] = this.events[listener.topic];
         if (listeners && listeners.length) {
             for (let i = 0; i < listeners.length; i++) {
                 if (listeners[i].id === listener.id) {
@@ -42,7 +42,7 @@ export default class EventEmitter {
     }
 
     emit(topic: string, data: any) : void {
-        let listeners: Listener[] = this.events[topic];
+        const listeners: Listener[] = this.events[topic];
         if (listeners && listeners.length) {
             for (let i = 0; i < listeners.length; i++) {
                 listeners[i].callback(data);

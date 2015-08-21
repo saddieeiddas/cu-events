@@ -9,7 +9,7 @@ export default class HandlesCharacter {
 	name : string;
 	action : any;
     constructor() {
-        this.name = "character";
+        this.name = 'character';
         this.action = CharacterAction;
     }
     start() {
