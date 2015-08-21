@@ -17,9 +17,9 @@ import FriendlyTargetListener from './listeners/FriendlyTarget';
 
 // Listeners
 const listeners : any = {
-    "character": new CharacterListener(),
-    "enemytarget": new EnemyTargetListener(),
-    "friendlytarget": new FriendlyTargetListener(),
+    'character': new CharacterListener(),
+    'enemytarget': new EnemyTargetListener(),
+    'friendlytarget': new FriendlyTargetListener(),
 };
 
 

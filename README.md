@@ -7,7 +7,7 @@ cu-events
 
 Overview
 -----------
-Provides the ability to listen for changing data from the client, grouped by topic, with a one-to-one relationship with the handlesSomething flags from .ui files.  So, if writing a UI that deals with character data, listen for "character" events.
+Provides the ability to listen for changing data from the client, grouped by topic, with a one-to-one relationship with the handlesSomething flags from .ui files.  So, if writing a UI that deals with character data, listen for 'character' events.
 
 ### Installation
 
@@ -17,7 +17,7 @@ Provides the ability to listen for changing data from the client, grouped by top
 
 ```javascript
 var events = require('cu-events');
- events.on("character", function(data) {
+ events.on('character', function(data) {
     console.dir(data);
 });
 ```
@@ -26,7 +26,7 @@ var events = require('cu-events');
 
 ```typescript
 import events from 'cu-events';
-events.on("enemytarget", (data: any) => {
+events.on('enemytarget', (data: any) => {
     console.dir(data);
 });
 ```
@@ -56,7 +56,7 @@ Adding New Event Groups
 -----------------------
 Let us look at another possible grouping of events, the chat events.  Unlike the character, enemytarget and friendlytarget events where having a single data structure passed for each triggering of the event, for chat events, it makes more sense to send different data depending on the type of event, so with that in mind, here is an example implementation of the chat event group **Note: this is just an example**
 
-To add a new event group, such as handlesChat ("chat") follow these steps:
+To add a new event group, such as handlesChat ('chat') follow these steps:
 
 **Step 1:** In ```src/ts/actions/main.ts``` add a new reflux action for Chat like this:
 
@@ -89,7 +89,7 @@ function run(emitter : EventEmitter) {
 	cuAPI.OnChat((type: number, from: string, 
 				body: string, nick: string, 
 				iscse: boolean) => {
-		info.type = "chat";
+		info.type = 'chat';
 		info.message = {
 			type: type,
 			from: from,
@@ -97,22 +97,22 @@ function run(emitter : EventEmitter) {
 			nick: nick,
 			iscse: iscse
 		};
-		emitter.emit("chat", info);
+		emitter.emit('chat', info);
 	});
 	cuAPI.OnBeginChat((mode: number, text: string) => {
-		info.type = "begin";
+		info.type = 'begin';
 		info.message = {
 			mode: mode,
 			text: text
 		};
-		emitter.emit("chat", info);
+		emitter.emit('chat', info);
 	});
 	cuAPI.OnConsoleText((text: string) => {
-		info.type = "console";
+		info.type = 'console';
 		info.message = {
-			lines = text.split("\n");
+			lines = text.split('\n');
 		};
-		emitter.emit("chat", info);
+		emitter.emit('chat', info);
 	});
 }
 export default class ChatListener {
@@ -141,7 +141,7 @@ import ChatListener from './listeners/ChatListener';
 b) Create a listener in the listener table
 
 ```javascript
-"chat": new ChatListener(),
+'chat': new ChatListener(),
 ```
 	
 c) Create a handlesChat object
@@ -159,15 +159,15 @@ handlesChat,
 ### Example Usage
 
 ```javascript
-events.on("chat", function(chat) {
+events.on('chat', function(chat) {
 	switch(chat.type) {
-	case "begin":
+	case 'begin':
 		// handle begin chat (put focus in chat box)
 		break;
-	case "chat":
+	case 'chat':
 		// handle chat message
 		break;
-	case "console":
+	case 'console':
 		// handle console text
 		break;
 	}		
