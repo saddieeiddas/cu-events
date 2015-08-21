@@ -1,4 +1,4 @@
-declare var Reflux: any;
+declare var Reflux : any;
 declare module "reflux" {
-	export default Reflux;
+	export = Reflux;
 }

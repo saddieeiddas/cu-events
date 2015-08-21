@@ -5,7 +5,7 @@
  */
 /// <reference path="../definitions/tsd.d.ts" />
 
-import EventEmitter = require('eventemitter3');
+import EventEmitter from './classes/EventEmitter';
 
 import HandlesCharacter from './classes/HandlesCharacter';
 import HandlesEnemyTarget from './classes/HandlesEnemyTarget';
@@ -22,46 +22,42 @@ const listeners : any = {
     "friendlytarget": new FriendlyTargetListener(),
 };
 
-// Event emitter for grouped events
-export default class Events {
 
-    // Handle* objects
-    Character : HandlesCharacter;
-    EnemyTarget : HandlesEnemyTarget;
-    FriendlyTarget : HandlesFriendlyTarget;
+// Handle* objects
+let handlesCharacter : HandlesCharacter = new HandlesCharacter();
+let handlesEnemyTarget : HandlesEnemyTarget = new HandlesEnemyTarget();
+let handlesFriendlyTarget : HandlesFriendlyTarget = new HandlesFriendlyTarget();
 
-    // Event Emitter
-    emitter : EventEmitter;
+// Event Emitter
+let emitter : EventEmitter = new EventEmitter();
 
-    constructor() {
-        // Handles objects
-        this.Character = new HandlesCharacter(),
-        this.EnemyTarget = new HandlesCharacter(),
-        this.FriendlyTarget = new HandlesCharacter()
-        // ...
-
-        // Create an event emitter
-        this.emitter = new EventEmitter();
+// register for an event group
+function on(topic : string, callback : (info : any) => void) : any {
+    var listener = listeners[topic];
+    if (listener && !listener.listening) {
+        listener.start(emitter);
     }
+    return emitter.addListener(topic, callback);
+}
 
-    // register for an event group
-    on(topic : string, callback : (info : any) => void) {
-        var listener = listeners[topic];
-        if (listener && !listener.listening) {
-            listener.start(this.emitter);
-        }
-        this.emitter.on(topic, callback);
-    }
+function off(listener: any) : void {
+    emitter.removeListener(listener);
+}
 
-    off(topic : string, callback : (info : any) => void) {
-        this.emitter.removeListener(topic, callback);
-    }
+function addListener(topic : string, callback : (info : any) => void) : void {
+    on(topic, callback);
+}
 
-    addListener(topic : string, callback : (info : any) => void) {
-        this.on(topic, callback);
-    }
+function removeListener(listener: any) : void {
+    off(listener);
+}
 
-    removeListener(topic : string, callback : (info : any) => void) {
-        this.off(topic, callback);
-    }
+export default {
+    handlesCharacter,
+    handlesEnemyTarget,
+    handlesFriendlyTarget,
+    on,
+    off,
+    addListener,
+    removeListener
 }

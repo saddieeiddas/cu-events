@@ -3,15 +3,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-import EventEmitter = require('eventemitter3');
+import EventEmitter from '../classes/EventEmitter';
 import * as core from 'cu-core';
 import { race as Race } from 'cu-core';
 
-const cuAPI : core.clientInterface = core.cuAPI;
+declare var cuAPI: any;
 
-function run(emitter : EventEmitter) {
+function run(emitter : EventEmitter, type: string) {
 	var info : any = {},
-		topic : string = this.type.toLosweCase();
+		topic : string = type.toLowerCase();
 
 	// Event receivers
 	function nameChanged(name : string) {
@@ -21,7 +21,6 @@ function run(emitter : EventEmitter) {
 
 	function raceChanged(race : number) {
 		info.raceId = race;
-		debugger;
 		emitter.emit(topic, info);
 	}
 
@@ -38,19 +37,19 @@ function run(emitter : EventEmitter) {
 	}
 
 	// Hook up event receivers to the relevant cuAPI methods
-	switch(this.type) {
-		case "character":
+	switch(type) {
+		case "Character":
 			cuAPI.OnCharacterNameChanged(nameChanged);
 			cuAPI.OnCharacterRaceChanged(raceChanged);
 			cuAPI.OnCharacterHealthChanged(healthChanged);
 			cuAPI.OnCharacterStaminaChanged(staminaChanged);
 			break;
-		case "enemytarget":
+		case "EnemyTarget":
 			cuAPI.OnEnemyTargetNameChanged(nameChanged);
 			cuAPI.OnEnemyTargetHealthChanged(healthChanged);
 			cuAPI.OnEnemyTargetStaminaChanged(staminaChanged);
 			break;
-		case "friendlytarget":
+		case "FriendlyTarget":
 			cuAPI.OnFriendlyTargetNameChanged(nameChanged);
 			cuAPI.OnFriendlyTargetHealthChanged(healthChanged);
 			cuAPI.OnFriendlyTargetStaminaChanged(staminaChanged);
@@ -60,12 +59,14 @@ function run(emitter : EventEmitter) {
 
 export default class UnitFrameListener {
 	listening: boolean = false
-	constructor() {
+	type: string;
+	constructor(type: string) {
+		this.type = type;
 		this.listening = false;
 	}
 	start(emitter : EventEmitter) {
 		if (!this.listening) {
-			run(emitter);
+			run(emitter, this.type);
 			this.listening = true;
 		}
 	}

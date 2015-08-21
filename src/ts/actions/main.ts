@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 /// <reference path="../../definitions/tsd.d.ts" />
-import Reflux from 'reflux';
+import * as Reflux from 'reflux';
 
 // Create actions for each event group (and store from cu-core-stores)
 const Character = Reflux.createAction(['start']);

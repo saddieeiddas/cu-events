@@ -5,5 +5,7 @@
  */
 import UnitFrameListener from './UnitFrame';
 export default class EmenyTargetListener extends UnitFrameListener {
-	type: string = "EnemyTarget"
+	constructor() {
+		super("EnemyTarget");
+	}
 }

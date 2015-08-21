@@ -5,5 +5,7 @@
  */
 import UnitFrameListener from './UnitFrame';
 export default class CharacterListener extends UnitFrameListener {
-	type: string = "Character"
+	constructor() {
+		super("Character");
+	}
 }

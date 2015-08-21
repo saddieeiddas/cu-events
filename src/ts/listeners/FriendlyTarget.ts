@@ -5,5 +5,7 @@
  */
 import UnitFrameListener from './UnitFrame';
 export default class FriendlyTargetListener extends UnitFrameListener {
-	type: string = "FriendlyTarget"
+	constructor() {
+		super("FriendlyTarget");
+	}
 }
