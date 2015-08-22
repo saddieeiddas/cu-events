@@ -36,21 +36,64 @@ Event Groupings
 
 Three event groups are currently defined:
 
-character 
-: Handles Character Events (name, race, health and stamina)
+**character**
 
-enemytarget
-: Handles Enemy Target (name, health and stamina)
+ Handles Character events which include information about
+ 
+- name
+- race
+- health 
+- stamina
 
-friendlytarget
-: Handles Friendly Target (name, health and stamina)
+**enemytarget**
+
+Handles Enemy Target events which include information about
+ 
+- name
+- health 
+- stamina
+ 
+**friendlytarget**
+
+Handles Friendly Target events which include information about
+ 
+- name
+- health 
+- stamina
 
 ### Planned Groupings
 
-chat
-: Handle Chat Events
+**chat**
+
+Handle Chat Events
+
+- Chat messages
+- Starting chat
+- Console messages
 
 These grouping will likely be defined by the UIs that need a data store to monitor events.  An event group doesn't necessarily have to be restricted to cuAPI.On* events, it could include polled data from REST APIs.
+
+### Handles Flags
+
+These are the handles flags currently supported by the client, many will include events and provide information that a UI might need.  Some are to control behaviour.
+
+Handles Flag           | Event Group    | State       | Description
+-----------------------|----------------|-------------|----------------
+handlesAbilities       | abilities      |             |
+handlesAnnouncements   | announcements  |             |
+handlesBuilding        | building       | todo        |
+handlesCharacter       | character      | implemented | health, stamina, race, name
+handlesChat            | chat           |
+handlesBeginChat       | chat           |             |
+handlesConsole         | chat           | 
+handlesConfig          | config         |
+handlesEnemyTarget     | enemytarget    | implemented | health, stamina, name
+handlesEquippedGear    | equippedgear   | 
+handlesFriendlyTarget  | friendlytarget | implemented | health, stamina, name
+handlesInput           | input          | ignore      | no associated events
+handlesInventory       | inventory      |
+handlesLogging         | logging        |
+handlesLogin           | login          |
 
 Adding New Event Groups
 -----------------------
