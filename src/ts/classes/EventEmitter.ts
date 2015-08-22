@@ -3,9 +3,11 @@ let internalId = 0;
 class Listener {
     id: number;
     topic: string;
+    once: boolean;
     callback: (data: any) => void;
-    constructor(topic: string, callback : (data: any) => void) {
+    constructor(topic: string, once : boolean, callback : (data: any) => void) {
         this.topic = topic;
+        this.once = once;
         this.callback = callback;
         this.id = ++internalId;
     }
@@ -17,9 +19,9 @@ export default class EventEmitter {
         this.events = {};
     }
 
-    addListener(topic: string, callback: (data: any) => void) : any {
+    addListener(topic: string, once: boolean = false, callback: (data: any) => void) : any {
         const listeners : Listener [] = this.events[topic]  = this.events[topic] || [];
-        const listener : Listener = new Listener(topic, callback);
+        const listener : Listener = new Listener(topic, once, callback);
         let i: number = listeners.indexOf(null);
         if (i === -1) {
             listeners.push(listener);
@@ -33,7 +35,7 @@ export default class EventEmitter {
         const listeners: Listener[] = this.events[listener.topic];
         if (listeners && listeners.length) {
             for (let i = 0; i < listeners.length; i++) {
-                if (listeners[i].id === listener.id) {
+                if (listeners[i] && listeners[i].id === listener.id) {
                     listeners[i] = null;
                     return;
                 }
@@ -45,7 +47,13 @@ export default class EventEmitter {
         const listeners: Listener[] = this.events[topic];
         if (listeners && listeners.length) {
             for (let i = 0; i < listeners.length; i++) {
-                listeners[i].callback(data);
+                if (listeners[i]) {
+                    const callback : (data: any) => void = listeners[i].callback;
+                    if (listeners[i].once) {
+                        listeners[i] = null;
+                    }
+                    callback(data);
+                }
             }
         }
     }
