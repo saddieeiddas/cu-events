@@ -6,8 +6,8 @@
 import { Character as CharacterAction } from '../actions/main';
 
 export default class HandlesCharacter {
-	name : string;
-	action : any;
+	name: string;
+	action: any;
     constructor() {
         this.name = 'character';
         this.action = CharacterAction;
