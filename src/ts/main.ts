@@ -11,17 +11,19 @@ import HandlesCharacter from './classes/HandlesCharacter';
 import HandlesEnemyTarget from './classes/HandlesEnemyTarget';
 import HandlesFriendlyTarget from './classes/HandlesFriendlyTarget';
 
+import InitListener from './listeners/Init';
+
 import CharacterListener from './listeners/Character';
 import EnemyTargetListener from './listeners/EnemyTarget';
 import FriendlyTargetListener from './listeners/FriendlyTarget';
 
 // Listeners
 const listeners : any = {
+    'init': new InitListener(),
     'character': new CharacterListener(),
     'enemytarget': new EnemyTargetListener(),
     'friendlytarget': new FriendlyTargetListener(),
 };
-
 
 // Handle* objects
 const handlesCharacter : HandlesCharacter = new HandlesCharacter();
@@ -34,10 +36,14 @@ const emitter : EventEmitter = new EventEmitter();
 // register for an event group
 function on(topic : string, callback : (info : any) => void) : any {
     const listener = listeners[topic];
-    if (listener && !listener.listening) {
+    if (listener) {
+        const handle = emitter.addListener(topic, listener.once, callback);
+        // Start the listener.  The start() method will handle multiple
+        // starts.  In some cases, the listener does need kickstarting
+        // each time, in other cases, not.
         listener.start(emitter);
+        return handle;
     }
-    return emitter.addListener(topic, callback);
 }
 
 function off(listener: any) : void {
