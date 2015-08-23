@@ -7,9 +7,9 @@
 import * as Reflux from 'reflux';
 
 // Create actions for each event group (and store from cu-core-stores)
-const Character = Reflux.createAction(['start']);
-const EnemyTarget = Reflux.createAction(['start']);
-const FriendlyTarget = Reflux.createAction(['start']);
+const Character = Reflux.createActions(['start']);
+const EnemyTarget = Reflux.createActions(['start']);
+const FriendlyTarget = Reflux.createActions(['start']);
 
 // Export
 export {
