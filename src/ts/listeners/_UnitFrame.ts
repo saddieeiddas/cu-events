@@ -4,8 +4,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import EventEmitter from '../classes/EventEmitter';
-import { race as Race } from 'cu-core';
-
 declare const cuAPI: any;
 
 function run(emitter : EventEmitter, type: string) {
@@ -19,7 +17,7 @@ function run(emitter : EventEmitter, type: string) {
 	}
 
 	function raceChanged(race : number) {
-		info.raceId = race;
+		info.race = race;
 		emitter.emit(topic, info);
 	}
 
@@ -63,7 +61,7 @@ export default class UnitFrameListener {
 		this.type = type;
 		this.listening = false;
 	}
-	start(emitter : EventEmitter) {
+	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
 			run(emitter, this.type);
 			this.listening = true;
