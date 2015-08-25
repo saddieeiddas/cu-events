@@ -24,6 +24,13 @@ export default class EventEmitter {
         this.events = {};
     }
 
+    /**
+     * addListener() is called to register a listener for a topic.
+     *
+     * @param topic {string}         Topic name
+     * @param once {boolean}         Fire event only once (auto-unregister)
+     * @param callback {function}    Handler to call when topic is fired
+     */
     addListener(topic: string, once: boolean = false, callback: (data: any) => void) : any {
         const listeners : Listener [] = this.events[topic]  = this.events[topic] || [];
         const listener : Listener = new Listener(topic, once, callback);
@@ -36,6 +43,11 @@ export default class EventEmitter {
         return listener;
     }
 
+    /**
+     * removeListener() is called to deregister an existing listener
+     *
+     * @param listener {any}   Handle returned by previous call to addListener()
+     */
     removeListener(listener: any) : void {
         const listeners: Listener[] = this.events[listener.topic];
         if (listeners && listeners.length) {
@@ -48,6 +60,12 @@ export default class EventEmitter {
         }
     }
 
+    /**
+     * emit() is called to pass the supplied data to the registered handlers for the topic
+     *
+     * @param topic {string}         Topic name
+     * @param data {any}  The data being passed (depends on topic)
+     */
     emit(topic: string, data: any) : void {
         const listeners: Listener[] = this.events[topic];
         if (listeners && listeners.length) {

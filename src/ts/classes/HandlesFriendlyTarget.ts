@@ -11,7 +11,7 @@ export default class HandlesFriendlyTarget {
         this.name = 'friendlytarget';
         this.action = FriendlyTargetAction;
     }
-    start() {
+    start() : void {
         this.action.start();
     }
 }

@@ -11,7 +11,7 @@ export default class HandlesEnemyTarget {
         this.name = 'enemytarget';
         this.action = EnemyTargetAction;
     }
-    start() {
+    start() : void {
         this.action.start();
     }
 }

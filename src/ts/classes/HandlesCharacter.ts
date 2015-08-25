@@ -4,7 +4,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import { Character as CharacterAction } from '../actions/main';
-
 export default class HandlesCharacter {
 	name: string;
 	action: any;
@@ -12,7 +11,7 @@ export default class HandlesCharacter {
         this.name = 'character';
         this.action = CharacterAction;
     }
-    start() {
+    start() : void {
         this.action.start();
     }
 }
