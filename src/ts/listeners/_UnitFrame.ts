@@ -63,8 +63,8 @@ export default class UnitFrameListener {
 	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
-			run(emitter, this.type);
 			this.listening = true;
+			run(emitter, this.type);
 		}
 	}
 }
