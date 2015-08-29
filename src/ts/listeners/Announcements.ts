@@ -9,7 +9,7 @@ declare const cuAPI: any;
 const EVENT_NAME = 'announcement';
 
 function run(emitter: EventEmitter) {
-	cuAPI.OnAnnouncement((message: string, type: string) => {
+	cuAPI.OnAnnouncement((message: string, type: number) => {
 		debugger;
 		emitter.emit(EVENT_NAME, {
 			message: message,
