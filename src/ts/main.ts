@@ -7,12 +7,14 @@
 
 import EventEmitter from './classes/EventEmitter';
 
+import HandlesAnnouncements from './classes/HandlesAnnouncements';
 import HandlesCharacter from './classes/HandlesCharacter';
 import HandlesEnemyTarget from './classes/HandlesEnemyTarget';
 import HandlesFriendlyTarget from './classes/HandlesFriendlyTarget';
 
 import InitListener from './listeners/Init';
 
+import AnnouncementsListener from './listeners/Announcements';
 import CharacterListener from './listeners/Character';
 import EnemyTargetListener from './listeners/EnemyTarget';
 import FriendlyTargetListener from './listeners/FriendlyTarget';
@@ -20,12 +22,14 @@ import FriendlyTargetListener from './listeners/FriendlyTarget';
 // Listeners
 const listeners : any = {
     'init': new InitListener(),
+    'announcements': new AnnouncementsListener(),
     'character': new CharacterListener(),
     'enemytarget': new EnemyTargetListener(),
     'friendlytarget': new FriendlyTargetListener(),
 };
 
 // Handle* objects
+const handlesAnnouncements : HandlesAnnouncements = new HandlesAnnouncements();
 const handlesCharacter : HandlesCharacter = new HandlesCharacter();
 const handlesEnemyTarget : HandlesEnemyTarget = new HandlesEnemyTarget();
 const handlesFriendlyTarget : HandlesFriendlyTarget = new HandlesFriendlyTarget();
@@ -59,6 +63,7 @@ function removeListener(listener: any) : void {
 }
 
 export default {
+    handlesAnnouncements,
     handlesCharacter,
     handlesEnemyTarget,
     handlesFriendlyTarget,

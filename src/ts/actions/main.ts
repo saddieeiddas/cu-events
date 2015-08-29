@@ -10,10 +10,12 @@ import * as Reflux from 'reflux';
 const Character = Reflux.createActions(['start']);
 const EnemyTarget = Reflux.createActions(['start']);
 const FriendlyTarget = Reflux.createActions(['start']);
+const Announcements = Reflux.createActions(['start']);
 
 // Export
 export {
     Character,
     EnemyTarget,
-    FriendlyTarget
+    FriendlyTarget,
+    Announcements
 }
