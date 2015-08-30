@@ -16,12 +16,9 @@ function run(emitter: EventEmitter) {
 	function tick() {
 		// TODO: switch to using cu-restapi
 		rest.controlGame({ includeControlPoints: true }).then((data:any) => {
-			try {
-				data = JSON.parse(data);
-			} catch(e) {
-				data = { error: e.message }
-			}
 			emitter.emit(EVENT_NAME, data);
+		}, (status: string, errorThrown: string) => {
+			emitter.emit(EVENT_NAME, { error: { status: status, reason: errorThrown }});
 		});
 	}
 	if (!timer) {

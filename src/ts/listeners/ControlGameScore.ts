@@ -13,19 +13,46 @@ let timer : any;
 
 function run(emitter: EventEmitter) {
 	let rest = new REST();
+	let info: any = {};
+
+	// Handle tick
 	function tick() {
-		// TODO: switch to using cu-restapi
-		rest.controlGame({ includeControlPoints: false }).then((data:any) => {
-			try {
-				data = JSON.parse(data);
-			} catch(e) {
-				data = { error: e.message };
+		let count = 2;
+
+		// wait for both requests to finish before triggering
+		// the event
+		function done() {
+			count--;
+			if (count === 0) {
+				emitter.emit(EVENT_NAME, info);
+				info = {};
 			}
-			emitter.emit(EVENT_NAME, data);
-		});
+		}
+
+		// Get control game (score only)
+		rest.controlGame({ includeControlPoints: false })
+			.then((data:any) => {
+				info.score = data;
+				done();
+			}, (status: string, errorThrown: string) => {
+				info.error = { status: status, reason: errorThrown };
+				done();
+			});
+
+		// and player counts
+		rest.players()
+			.then((data: any) => {
+				info.players = data;
+				done();
+			}, (status: string, errorThrown: string) => {
+				info.error = { status: status, reason: errorThrown };
+				done();
+			});
 	}
+
+	// if timer not running, start it
 	if (!timer) {
-		setInterval(tick, POLL_INTERVAL);
+		timer = setInterval(tick, POLL_INTERVAL);
 	}
 }
 
