@@ -12,6 +12,7 @@ export default class HandlesFriendlyTarget {
         this.action = FriendlyTargetAction;
     }
     start() : void {
+        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

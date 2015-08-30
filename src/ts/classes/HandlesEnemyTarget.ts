@@ -12,6 +12,7 @@ export default class HandlesEnemyTarget {
         this.action = EnemyTargetAction;
     }
     start() : void {
+        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

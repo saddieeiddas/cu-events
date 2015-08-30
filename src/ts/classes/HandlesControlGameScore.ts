@@ -8,10 +8,13 @@ export default class HandlesControlGameScore {
 	name: string;
 	action: any;
     constructor() {
+		console.log('HandlesControlScoreGame:constructor()');
         this.name = 'controlgame-score';
         this.action = ControlGameScoreAction;
     }
     start() : void {
+		console.log('HandlesControlScoreGame:start() call action.start()');
+        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

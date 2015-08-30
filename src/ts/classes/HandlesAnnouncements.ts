@@ -12,6 +12,7 @@ export default class HandlesAnnouncements {
         this.action = AnnouncementsAction;
     }
     start() : void {
+        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

@@ -12,6 +12,7 @@ export default class HandlesCharacter {
         this.action = CharacterAction;
     }
     start() : void {
+        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }
