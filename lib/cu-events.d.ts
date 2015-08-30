@@ -5,11 +5,15 @@ declare module 'cu-events' {
     import HandlesCharacter from '__cu-events/classes/HandlesCharacter';
     import HandlesEnemyTarget from '__cu-events/classes/HandlesEnemyTarget';
     import HandlesFriendlyTarget from '__cu-events/classes/HandlesFriendlyTarget';
+    import HandlesControlGame from '__cu-events/classes/HandlesControlGame';
+    import HandlesControlGameScore from '__cu-events/classes/HandlesControlGameScore';
     var _default: {
         handlesAnnouncements: HandlesAnnouncements;
         handlesCharacter: HandlesCharacter;
         handlesEnemyTarget: HandlesEnemyTarget;
         handlesFriendlyTarget: HandlesFriendlyTarget;
+        handlesControlGame: HandlesControlGame;
+        handlesControlGameScore: HandlesControlGameScore;
         on: (topic: string, callback: (info: any) => void) => any;
         off: (listener: any) => void;
         addListener: (topic: string, callback: (info: any) => void) => void;
@@ -47,6 +51,24 @@ declare module '__cu-events/classes/HandlesEnemyTarget' {
 
 declare module '__cu-events/classes/HandlesFriendlyTarget' {
     export default class HandlesFriendlyTarget {
+        name: string;
+        action: any;
+        constructor();
+        start(): void;
+    }
+}
+
+declare module '__cu-events/classes/HandlesControlGame' {
+    export default class HandlesControlGame {
+        name: string;
+        action: any;
+        constructor();
+        start(): void;
+    }
+}
+
+declare module '__cu-events/classes/HandlesControlGameScore' {
+    export default class HandlesControlGameScore {
         name: string;
         action: any;
         constructor();

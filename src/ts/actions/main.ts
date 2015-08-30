@@ -12,10 +12,18 @@ const EnemyTarget = Reflux.createActions(['start']);
 const FriendlyTarget = Reflux.createActions(['start']);
 const Announcements = Reflux.createActions(['start']);
 
+const ControlGame = Reflux.createActions(['start','stop']);
+const ControlGameScore = Reflux.createActions(['start','stop']);
+
 // Export
 export {
+	// cuAPI Events
     Character,
     EnemyTarget,
     FriendlyTarget,
-    Announcements
+    Announcements,
+
+    // REST API
+    ControlGame,
+    ControlGameScore
 }

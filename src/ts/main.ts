@@ -11,13 +11,16 @@ import HandlesAnnouncements from './classes/HandlesAnnouncements';
 import HandlesCharacter from './classes/HandlesCharacter';
 import HandlesEnemyTarget from './classes/HandlesEnemyTarget';
 import HandlesFriendlyTarget from './classes/HandlesFriendlyTarget';
+import HandlesControlGame from './classes/HandlesControlGame';
+import HandlesControlGameScore from './classes/HandlesControlGameScore';
 
 import InitListener from './listeners/Init';
-
 import AnnouncementsListener from './listeners/Announcements';
 import CharacterListener from './listeners/Character';
 import EnemyTargetListener from './listeners/EnemyTarget';
 import FriendlyTargetListener from './listeners/FriendlyTarget';
+import ControlGameListener from './listeners/ControlGame';
+import ControlGameScoreListener from './listeners/ControlGameScore';
 
 // Listeners
 const listeners : any = {
@@ -26,6 +29,8 @@ const listeners : any = {
     'character': new CharacterListener(),
     'enemytarget': new EnemyTargetListener(),
     'friendlytarget': new FriendlyTargetListener(),
+    'controlgame': new ControlGameListener(),
+    'controlgame-score': new ControlGameScoreListener()
 };
 
 // Handle* objects
@@ -33,8 +38,10 @@ const handlesAnnouncements : HandlesAnnouncements = new HandlesAnnouncements();
 const handlesCharacter : HandlesCharacter = new HandlesCharacter();
 const handlesEnemyTarget : HandlesEnemyTarget = new HandlesEnemyTarget();
 const handlesFriendlyTarget : HandlesFriendlyTarget = new HandlesFriendlyTarget();
+const handlesControlGame : HandlesControlGame = new HandlesControlGame();
+const handlesControlGameScore : HandlesControlGameScore = new HandlesControlGameScore();
 
-// Event Emitter
+// Event Emitter.  A single instance of event emitter handles all cu-events events
 const emitter : EventEmitter = new EventEmitter();
 
 // register for an event group
@@ -67,6 +74,8 @@ export default {
     handlesCharacter,
     handlesEnemyTarget,
     handlesFriendlyTarget,
+    handlesControlGame,
+    handlesControlGameScore,
     on,
     off,
     addListener,

@@ -10,7 +10,7 @@ class Listener {
     topic: string;
     once: boolean;
     callback: (data: any) => void;
-    constructor(topic: string, once : boolean, callback : (data: any) => void) {
+    constructor(topic: string, once: boolean, callback: (data: any) => void) {
         this.topic = topic;
         this.once = once;
         this.callback = callback;
@@ -28,11 +28,11 @@ export default class EventEmitter {
      * addListener() is called to register a listener for a topic.
      *
      * @param topic {string}         Topic name
-     * @param once {boolean}         Fire event only once (auto-unregister)
+     * @param once {boolean}         Fire event only once (auto-unregister) [optional]
      * @param callback {function}    Handler to call when topic is fired
      */
     addListener(topic: string, once: boolean = false, callback: (data: any) => void) : any {
-        const listeners : Listener [] = this.events[topic]  = this.events[topic] || [];
+        const listeners : Listener [] = this.events[topic] = this.events[topic] || [];
         const listener : Listener = new Listener(topic, once, callback);
         let i: number = listeners.indexOf(null);
         if (i === -1) {
@@ -41,6 +41,28 @@ export default class EventEmitter {
             listeners[i] = listener;
         }
         return listener;
+    }
+
+    /**
+     * on() is called to register a listener for a topic.
+     *
+     * @param topic {string}         Topic name
+     * @param callback {function}    Handler to call when topic is fired
+     */
+    on(topic: string, callback: (data: any) => void) : any {
+        return this.addListener(topic, false, callback);
+    }
+
+
+    /**
+     * listenOnce() is called to register a listener for a topic that will
+     * fire only once before being auto-removed.
+     *
+     * @param topic {string}         Topic name
+     * @param callback {function}    Handler to call when topic is fired
+     */
+    listenOnce(topic: string, callback: (data: any) => void) : any {
+        return this.addListener(topic, true, callback);
     }
 
     /**
@@ -71,11 +93,11 @@ export default class EventEmitter {
         if (listeners && listeners.length) {
             for (let i = 0; i < listeners.length; i++) {
                 if (listeners[i]) {
-                    const callback : (data: any) => void = listeners[i].callback;
-                    if (listeners[i].once) {
+                    const listener: Listener = listeners[i];
+                    if (listener.once) {
                         listeners[i] = null;
                     }
-                    callback(data);
+                    listener.callback(data);
                 }
             }
         }
