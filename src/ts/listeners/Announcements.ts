@@ -10,7 +10,6 @@ const EVENT_NAME = 'announcement';
 
 function run(emitter: EventEmitter) {
 	cuAPI.OnAnnouncement((message: string, type: number) => {
-		debugger;
 		emitter.emit(EVENT_NAME, {
 			message: message,
 			type: type
@@ -21,9 +20,6 @@ function run(emitter: EventEmitter) {
 export default class AnnouncementsListener {
 	listening: boolean = false;
 	type: string;
-	constructor() {
-		this.listening = false;
-	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
 			this.listening = true;

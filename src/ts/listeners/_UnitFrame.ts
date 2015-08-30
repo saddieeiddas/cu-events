@@ -59,7 +59,6 @@ export default class UnitFrameListener {
 	type: string;
 	constructor(type: string) {
 		this.type = type;
-		this.listening = false;
 	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {

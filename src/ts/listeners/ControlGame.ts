@@ -29,9 +29,6 @@ function run(emitter: EventEmitter) {
 export default class ControlGameListener {
 	listening: boolean = false;
 	type: string;
-	constructor() {
-		this.listening = false;
-	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
 			this.listening = true;
