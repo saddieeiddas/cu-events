@@ -8,7 +8,7 @@ export default class HandlesControlGameScore {
 	name: string;
 	action: any;
     constructor() {
-        this.name = 'controlgame';
+        this.name = 'controlgame-score';
         this.action = ControlGameScoreAction;
     }
     start() : void {
