@@ -6,9 +6,8 @@
 import EventEmitter from '../classes/EventEmitter';
 declare const cuAPI: any;
 
-function run(emitter : EventEmitter, type: string) {
-	const info : any = {},
-		topic : string = type.toLowerCase();
+function run(emitter : EventEmitter, topic: string) {
+	const info: any = {};
 
 	// Event receivers
 	function nameChanged(name : string) {
@@ -34,19 +33,19 @@ function run(emitter : EventEmitter, type: string) {
 	}
 
 	// Hook up event receivers to the relevant cuAPI methods
-	switch(type) {
-		case 'Character':
+	switch(topic) {
+		case 'character':
 			cuAPI.OnCharacterNameChanged(nameChanged);
 			cuAPI.OnCharacterRaceChanged(raceChanged);
 			cuAPI.OnCharacterHealthChanged(healthChanged);
 			cuAPI.OnCharacterStaminaChanged(staminaChanged);
 			break;
-		case 'EnemyTarget':
+		case 'enemytarget':
 			cuAPI.OnEnemyTargetNameChanged(nameChanged);
 			cuAPI.OnEnemyTargetHealthChanged(healthChanged);
 			cuAPI.OnEnemyTargetStaminaChanged(staminaChanged);
 			break;
-		case 'FriendlyTarget':
+		case 'friendlytarget':
 			cuAPI.OnFriendlyTargetNameChanged(nameChanged);
 			cuAPI.OnFriendlyTargetHealthChanged(healthChanged);
 			cuAPI.OnFriendlyTargetStaminaChanged(staminaChanged);
@@ -56,14 +55,14 @@ function run(emitter : EventEmitter, type: string) {
 
 export default class UnitFrameListener {
 	listening: boolean = false;
-	type: string;
-	constructor(type: string) {
-		this.type = type;
+	topic: string;
+	constructor(handles: any) {
+		this.topic = handles.name;
 	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
 			this.listening = true;
-			run(emitter, this.type);
+			run(emitter, this.topic);
 		}
 	}
 }

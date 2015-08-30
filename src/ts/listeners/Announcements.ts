@@ -4,13 +4,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import EventEmitter from '../classes/EventEmitter';
+import HandlesAnnouncements from '../classes/HandlesAnnouncements';
 declare const cuAPI: any;
 
-const EVENT_NAME = 'announcement';
-
-function run(emitter: EventEmitter) {
+function run(emitter: EventEmitter, topic: string) {
 	cuAPI.OnAnnouncement((message: string, type: number) => {
-		emitter.emit(EVENT_NAME, {
+		emitter.emit(topic, {
 			message: message,
 			type: type
 		});
@@ -20,10 +19,14 @@ function run(emitter: EventEmitter) {
 export default class AnnouncementsListener {
 	listening: boolean = false;
 	type: string;
+	handles: HandlesAnnouncements;
+	constructor(handles: HandlesAnnouncements) {
+		this.handles = handles;
+	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
 			this.listening = true;
-			run(emitter);
+			run(emitter, this.handles.name);
 		}
 	}
 }

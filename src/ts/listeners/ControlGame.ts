@@ -5,20 +5,20 @@
  */
 import EventEmitter from '../classes/EventEmitter';
 import REST from 'cu-restapi';
+import HandlesControlGame from '../classes/HandlesControlGame';
 declare const cuAPI: any;
 
-const EVENT_NAME = 'controlgame';
 const POLL_INTERVAL = 5000;
 let timer : any;
 
-function run(emitter: EventEmitter) {
+function run(emitter: EventEmitter, topic: string) {
 	let rest = new REST();
 	function tick() {
 		// TODO: switch to using cu-restapi
 		rest.controlGame({ includeControlPoints: true }).then((data:any) => {
-			emitter.emit(EVENT_NAME, data);
+			emitter.emit(topic, data);
 		}, (status: string, errorThrown: string) => {
-			emitter.emit(EVENT_NAME, { error: { status: status, reason: errorThrown }});
+			emitter.emit(topic, { error: { status: status, reason: errorThrown }});
 		});
 	}
 	if (!timer) {
@@ -28,11 +28,14 @@ function run(emitter: EventEmitter) {
 
 export default class ControlGameListener {
 	listening: boolean = false;
-	type: string;
+	topic: string;
+	constructor(handles: HandlesControlGame) {
+		this.topic = handles.name;
+	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
 			this.listening = true;
-			run(emitter);
+			run(emitter, this.topic);
 		}
 	}
 	stop() {

@@ -4,8 +4,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import UnitFrameListener from './_UnitFrame';
+import HandlesEnemyTarget from '../classes/HandlesEnemyTarget';
 export default class EmenyTargetListener extends UnitFrameListener {
-	constructor() {
-		super('EnemyTarget');
+	constructor(handles: HandlesEnemyTarget) {
+		super(handles);
 	}
 }

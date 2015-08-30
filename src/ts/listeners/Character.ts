@@ -4,8 +4,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import UnitFrameListener from './_UnitFrame';
+import HandlesCharacter from '../classes/HandlesCharacter';
 export default class CharacterListener extends UnitFrameListener {
-	constructor() {
-		super('Character');
+	constructor(handles: HandlesCharacter) {
+		super(handles);
 	}
 }

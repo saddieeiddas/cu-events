@@ -22,24 +22,25 @@ import FriendlyTargetListener from './listeners/FriendlyTarget';
 import ControlGameListener from './listeners/ControlGame';
 import ControlGameScoreListener from './listeners/ControlGameScore';
 
-// Listeners
-const listeners : any = {
-    'init': new InitListener(),
-    'announcements': new AnnouncementsListener(),
-    'character': new CharacterListener(),
-    'enemytarget': new EnemyTargetListener(),
-    'friendlytarget': new FriendlyTargetListener(),
-    'controlgame': new ControlGameListener(),
-    'controlgame-score': new ControlGameScoreListener()
-};
-
-// Handle* objects
+// Handle* objects.  These define both the event name, and the Reflux action used
+// to trigger the stores (TODO: This latter part is not working)
 const handlesAnnouncements : HandlesAnnouncements = new HandlesAnnouncements();
 const handlesCharacter : HandlesCharacter = new HandlesCharacter();
 const handlesEnemyTarget : HandlesEnemyTarget = new HandlesEnemyTarget();
 const handlesFriendlyTarget : HandlesFriendlyTarget = new HandlesFriendlyTarget();
 const handlesControlGame : HandlesControlGame = new HandlesControlGame();
 const handlesControlGameScore : HandlesControlGameScore = new HandlesControlGameScore();
+
+// Listeners
+const listeners : any = {
+    'init': new InitListener(),
+    [handlesAnnouncements.name]: new AnnouncementsListener(handlesAnnouncements),
+    [handlesCharacter.name]: new CharacterListener(handlesCharacter),
+    [handlesEnemyTarget.name]: new EnemyTargetListener(handlesEnemyTarget),
+    [handlesFriendlyTarget.name]: new FriendlyTargetListener(handlesFriendlyTarget),
+    [handlesControlGame.name]: new ControlGameListener(handlesControlGame),
+    [handlesControlGameScore.name]: new ControlGameScoreListener(handlesControlGameScore)
+};
 
 // Event Emitter.  A single instance of event emitter handles all cu-events events
 const emitter : EventEmitter = new EventEmitter();

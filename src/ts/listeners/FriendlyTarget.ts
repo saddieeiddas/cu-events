@@ -4,8 +4,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import UnitFrameListener from './_UnitFrame';
+import HandlesFriendlyTarget from '../classes/HandlesFriendlyTarget';
 export default class FriendlyTargetListener extends UnitFrameListener {
-	constructor() {
-		super('FriendlyTarget');
+	constructor(handles: HandlesFriendlyTarget) {
+		super(handles);
 	}
 }

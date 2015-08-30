@@ -5,13 +5,13 @@
  */
 import EventEmitter from '../classes/EventEmitter';
 import REST from 'cu-restapi';
+import HandlesControlGameScore from '../classes/HandlesControlGameScore';
 declare const cuAPI: any;
 
-const EVENT_NAME = 'controlgame-score';
 const POLL_INTERVAL = 5000;
 let timer : any;
 
-function run(emitter: EventEmitter) {
+function run(emitter: EventEmitter, topic: string) {
 	let rest = new REST();
 	let info: any = {};
 
@@ -24,7 +24,7 @@ function run(emitter: EventEmitter) {
 		function done() {
 			count--;
 			if (count === 0) {
-				emitter.emit(EVENT_NAME, info);
+				emitter.emit(topic, info);
 				info = {};
 			}
 		}
@@ -58,11 +58,14 @@ function run(emitter: EventEmitter) {
 
 export default class ControlGameScoreListener {
 	listening: boolean = false;
-	type: string;
+	topic: string;
+	constructor(handles: HandlesControlGameScore) {
+		this.topic = handles.name;
+	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
 			this.listening = true;
-			run(emitter);
+			run(emitter, this.topic);
 		}
 	}
 	stop() {
