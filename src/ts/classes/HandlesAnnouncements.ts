@@ -5,14 +5,9 @@
  */
 import { Announcements as AnnouncementsAction } from '../actions/main';
 export default class HandlesAnnouncements {
-	name: string;
-	action: any;
-    constructor() {
-        this.name = 'announcements';
-        this.action = AnnouncementsAction;
-    }
+	name: string = 'announcements';
+	action: any = AnnouncementsAction;
     start() : void {
-        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

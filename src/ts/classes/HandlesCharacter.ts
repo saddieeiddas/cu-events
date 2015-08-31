@@ -5,14 +5,9 @@
  */
 import { Character as CharacterAction } from '../actions/main';
 export default class HandlesCharacter {
-	name: string;
-	action: any;
-    constructor() {
-        this.name = 'character';
-        this.action = CharacterAction;
-    }
+	name: string = 'character';
+	action: any = CharacterAction;
     start() : void {
-        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

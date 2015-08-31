@@ -5,14 +5,9 @@
  */
 import { FriendlyTarget as FriendlyTargetAction } from '../actions/main';
 export default class HandlesFriendlyTarget {
-	name: string;
-	action: any;
-    constructor() {
-        this.name = 'friendlytarget';
-        this.action = FriendlyTargetAction;
-    }
+	name: string = 'friendlytarget';
+	action: any = FriendlyTargetAction;
     start() : void {
-        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

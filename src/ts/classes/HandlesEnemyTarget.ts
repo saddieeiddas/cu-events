@@ -5,14 +5,9 @@
  */
 import { EnemyTarget as EnemyTargetAction } from '../actions/main';
 export default class HandlesEnemyTarget {
-	name: string;
-	action: any;
-    constructor() {
-        this.name = 'enemytarget';
-        this.action = EnemyTargetAction;
-    }
+	name: string = 'enemytarget';
+	action: any = EnemyTargetAction;
     start() : void {
-        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

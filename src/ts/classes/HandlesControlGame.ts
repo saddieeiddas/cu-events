@@ -5,16 +5,9 @@
  */
 import { ControlGame as ControlGameAction } from '../actions/main';
 export default class HandlesControlGame {
-	name: string;
-	action: any;
-    constructor() {
-		console.log('HandlesControlGame:constructor()');
-        this.name = 'controlgame';
-        this.action = ControlGameAction;
-    }
+	name: string = 'controlgame';
+	action: any = ControlGameAction;
     start() : void {
-		console.log('HandlesControlGame:start() call action.start()');
-        // FIXME: DOES NOT WORK!!!
         this.action.start();
     }
 }

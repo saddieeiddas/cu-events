@@ -26,7 +26,6 @@ declare module '__cu-events/classes/HandlesAnnouncements' {
     export default class HandlesAnnouncements {
         name: string;
         action: any;
-        constructor();
         start(): void;
     }
 }
@@ -35,7 +34,6 @@ declare module '__cu-events/classes/HandlesCharacter' {
     export default class HandlesCharacter {
         name: string;
         action: any;
-        constructor();
         start(): void;
     }
 }
@@ -44,7 +42,6 @@ declare module '__cu-events/classes/HandlesEnemyTarget' {
     export default class HandlesEnemyTarget {
         name: string;
         action: any;
-        constructor();
         start(): void;
     }
 }
@@ -53,7 +50,6 @@ declare module '__cu-events/classes/HandlesFriendlyTarget' {
     export default class HandlesFriendlyTarget {
         name: string;
         action: any;
-        constructor();
         start(): void;
     }
 }
@@ -62,7 +58,6 @@ declare module '__cu-events/classes/HandlesControlGame' {
     export default class HandlesControlGame {
         name: string;
         action: any;
-        constructor();
         start(): void;
     }
 }
@@ -71,7 +66,6 @@ declare module '__cu-events/classes/HandlesControlGameScore' {
     export default class HandlesControlGameScore {
         name: string;
         action: any;
-        constructor();
         start(): void;
     }
 }
