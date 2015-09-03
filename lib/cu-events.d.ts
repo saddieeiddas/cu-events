@@ -23,50 +23,68 @@ declare module 'cu-events' {
 }
 
 declare module '__cu-events/classes/HandlesAnnouncements' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
     export default class HandlesAnnouncements {
         name: string;
-        action: any;
-        start(): void;
     }
 }
 
 declare module '__cu-events/classes/HandlesCharacter' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
     export default class HandlesCharacter {
         name: string;
-        action: any;
-        start(): void;
     }
 }
 
 declare module '__cu-events/classes/HandlesEnemyTarget' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
     export default class HandlesEnemyTarget {
         name: string;
-        action: any;
-        start(): void;
     }
 }
 
 declare module '__cu-events/classes/HandlesFriendlyTarget' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
     export default class HandlesFriendlyTarget {
         name: string;
-        action: any;
-        start(): void;
     }
 }
 
 declare module '__cu-events/classes/HandlesControlGame' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
     export default class HandlesControlGame {
         name: string;
-        action: any;
-        start(): void;
     }
 }
 
 declare module '__cu-events/classes/HandlesControlGameScore' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
     export default class HandlesControlGameScore {
         name: string;
-        action: any;
-        start(): void;
     }
 }
 

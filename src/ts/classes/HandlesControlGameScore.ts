@@ -3,11 +3,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-import { ControlGameScore as ControlGameScoreAction } from '../actions/main';
 export default class HandlesControlGameScore {
 	name: string = 'controlgame-score';
-	action: any = ControlGameScoreAction;
-    start() : void {
-        this.action.start();
-    }
 }
