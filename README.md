@@ -168,9 +168,6 @@ function run(emitter : EventEmitter) {
 }
 export default class ChatListener {
 	listening: boolean = false;
-	constructor(type: string) {
-		this.listening = false;
-	}
 	start(emitter : EventEmitter) {
 		if (!this.listening) {
 			run(emitter);
