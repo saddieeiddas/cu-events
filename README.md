@@ -93,23 +93,25 @@ These grouping will likely be defined by the UIs that need a data store to monit
 
 These are the handles flags currently supported by the client, many will include events and provide information that a UI might need.  Some are to control behaviour.
 
-Handles Flag           | Event Group    | State       | Description
------------------------|----------------|-------------|----------------
-handlesAbilities       | abilities      |             |
-handlesAnnouncements   | announcements  |             |
-handlesBuilding        | building       | todo        |
-handlesCharacter       | character      | implemented | health, stamina, race, name
-handlesChat            | chat           |
-handlesBeginChat       | chat           |             |
-handlesConsole         | chat           | 
-handlesConfig          | config         |
-handlesEnemyTarget     | enemytarget    | implemented | health, stamina, name
-handlesEquippedGear    | equippedgear   | 
-handlesFriendlyTarget  | friendlytarget | implemented | health, stamina, name
-handlesInput           | input          | ignore      | no associated events
-handlesInventory       | inventory      |
-handlesLogging         | logging        |
-handlesLogin           | login          |
+Handles Flag            | Event Group       | State       | Description
+------------------------|-------------------|-------------|----------------
+handlesAbilities        | abilities         |             |
+handlesAnnouncements    | announcements     |             |
+handlesBuilding         | building          |             |
+handlesCharacter        | character         | implemented | health, stamina, race, name
+handlesChat             | chat              |             |
+handlesBeginChat        | chat              |             |
+handlesConsole          | chat              |             |
+handlesConfig           | config            |             |
+handlesEnemyTarget      | enemytarget       | implemented | health, stamina, name
+handlesEquippedGear     | equippedgear      |             |
+handlesFriendlyTarget   | friendlytarget    | implemented | health, stamina, name
+handlesInput            |                   | ignore      | no associated events
+handlesInventory        | inventory         |             |
+handlesLogging          | logging           |             |
+handlesLogin            | login             |             |
+handlesControlGame      | controlgame       | implemented | score, control points
+handlesControlGameScore | controlgame-score | implemented | score, population
 
 Adding New Event Groups
 -----------------------
