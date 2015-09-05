@@ -61,17 +61,33 @@ Handles Friendly Target events which include information about
 - health 
 - stamina
 
+**controlgame**
+
+Handles information about the current control game (from /api/game/controlgame).
+
+- score
+- control points
+
+**controlgame-score**
+
+Handles the current games score and server population (from /api/game/controlgame and /api/game/players).
+
+- score
+- population counts
+
 ### Planned Groupings
 
 **chat**
 
-Handle Chat Events
+Handle Chat Events (example)
 
 - Chat messages
 - Starting chat
 - Console messages
 
 These grouping will likely be defined by the UIs that need a data store to monitor events.  An event group doesn't necessarily have to be restricted to cuAPI.On* events, it could include polled data from REST APIs.
+
+... TBA
 
 ### Handles Flags
 
@@ -97,33 +113,23 @@ handlesLogin           | login          |
 
 Adding New Event Groups
 -----------------------
-Let us look at another possible grouping of events, the chat events.  Unlike the character, enemytarget and friendlytarget events where having a single data structure passed for each triggering of the event, for chat events, it makes more sense to send different data depending on the type of event, so with that in mind, here is an example implementation of the chat event group **Note: this is just an example**
+Let us look at another possible grouping of events, the chat events.  Unlike the character, enemytarget and friendlytarget events where having a single data structure passed for each triggering of the event, for chat events, it makes more sense to send different data depending on the type of event, so with that in mind, here is an example implementation of a chat event group **Note: this is just an example**
 
 To add a new event group, such as handlesChat ('chat') follow these steps:
 
-**Step 1:** In ```src/ts/actions/main.ts``` add a new reflux action for Chat like this:
+**Step 1:**  Add a new class ```src/ts/classes/HandlesChat.ts``` with the following content:
 
 ```javascript
-const Chat = Reflux.createAction(['start']);
-```
-
-**Step 2:**  Add a new class ```src/ts/classes/HandlesChat.ts``` with the following content:
-
-```javascript
-import { Chat as ChatAction } from '../actions/main';
 export default class HandlesChat {
-	name: string;
-	action: any;
-    constructor() {
-        this.name = 'chat';
-        this.action = ChatAction;
-    }
-    start() {
-        this.action.start();
-    }
+	name: string = 'chat';
 }
 ```
-**Step 3:** Add a new listener ```src/ts/listeners/Chat.ts``` with the following content:
+
+**Step 2:** Add a new listener ```src/ts/listeners/Chat.ts``` with the following content.  The basic pattern for a listener is 
+
+- import EventEmitter
+- a run() function that does the actual listening / firing of events
+- an exported class with a start method (possibly also a stop method)
 
 ```javascript
 import EventEmitter from '../classes/EventEmitter';
@@ -172,7 +178,7 @@ export default class ChatListener {
 }
 ```
 
-**Step 4:** Hook it all up in ```src\ts\main.ts``` as follows
+**Step 3:** Hook it all up in ```src\ts\main.ts``` as follows
 
 a) Imports
 
@@ -181,17 +187,17 @@ import HandlesChat from './classes/HandlesChat';
 import ChatListener from './listeners/ChatListener';
 ```
 
-b) Create a listener in the listener table
-
-```javascript
-'chat': new ChatListener(),
-```
-	
-c) Create a handlesChat object
+b) Create a handlesChat object
 
 ```javascript
 const handlesChat : HandlesChat = new HandlesChat();
 ```
+
+c) Create a listener in the listener table
+
+```javascript
+[handlesChat.name]: new ChatListener(handlesChat),
+```	
 
 d) Finally, add the handlesChat object to the exports
 
