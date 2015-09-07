@@ -4,48 +4,51 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import EventEmitter from '../classes/EventEmitter';
+import { Combatant, Character, EnemyTarget, FriendlyTarget } from 'cu-core';
 declare const cuAPI: any;
 
 function run(emitter : EventEmitter, topic: string) {
 	const info: any = {};
+	let instance: Combatant;
 
 	// Event receivers
 	function nameChanged(name : string) {
-		info.name = name;
-		emitter.emit(topic, info);
+		instance.setName(name);
+		emitter.emit(topic, instance);
 	}
 
 	function raceChanged(race : number) {
-		info.race = race;
-		emitter.emit(topic, info);
+		instance.setRaceId(race);
+		emitter.emit(topic, instance);
 	}
 
 	function healthChanged(health: number, maxHealth : number) {
-		info.health = health;
-		info.maxHealth = maxHealth;
-		emitter.emit(topic, info);
+		instance.setHealth(health, maxHealth);
+		emitter.emit(topic, instance);
 	}
 
 	function staminaChanged(stamina: number, maxStamina : number) {
-		info.stamina = stamina;
-		info.maxStamina = maxStamina;
-		emitter.emit(topic, info);
+		instance.setStamina(stamina, maxStamina);
+		emitter.emit(topic, instance);
 	}
 
 	// Hook up event receivers to the relevant cuAPI methods
 	switch(topic) {
 		case 'character':
+			instance = new Character(<Character>{});
 			cuAPI.OnCharacterNameChanged(nameChanged);
 			cuAPI.OnCharacterRaceChanged(raceChanged);
 			cuAPI.OnCharacterHealthChanged(healthChanged);
 			cuAPI.OnCharacterStaminaChanged(staminaChanged);
 			break;
 		case 'enemytarget':
+			instance = new EnemyTarget(<EnemyTarget>{});
 			cuAPI.OnEnemyTargetNameChanged(nameChanged);
 			cuAPI.OnEnemyTargetHealthChanged(healthChanged);
 			cuAPI.OnEnemyTargetStaminaChanged(staminaChanged);
 			break;
 		case 'friendlytarget':
+			instance = new FriendlyTarget(<FriendlyTarget>{});
 			cuAPI.OnFriendlyTargetNameChanged(nameChanged);
 			cuAPI.OnFriendlyTargetHealthChanged(healthChanged);
 			cuAPI.OnFriendlyTargetStaminaChanged(staminaChanged);
