@@ -4,5 +4,5 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 export default class HandlesControlGameScore {
-	name: string = 'controlgame-score';
+	topic: string = 'controlgame-score';
 }
