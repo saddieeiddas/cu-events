@@ -26,7 +26,7 @@ export default class AnnouncementsListener {
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {
 			this.listening = true;
-			run(emitter, this.handles.name);
+			run(emitter, this.handles.topic);
 		}
 	}
 }

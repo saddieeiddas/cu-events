@@ -60,7 +60,7 @@ export default class ControlGameScoreListener {
 	listening: boolean = false;
 	topic: string;
 	constructor(handles: HandlesControlGameScore) {
-		this.topic = handles.name;
+		this.topic = handles.topic;
 	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {

@@ -30,7 +30,7 @@ export default class ControlGameListener {
 	listening: boolean = false;
 	topic: string;
 	constructor(handles: HandlesControlGame) {
-		this.topic = handles.name;
+		this.topic = handles.topic;
 	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {

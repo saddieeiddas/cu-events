@@ -34,12 +34,12 @@ const handlesControlGameScore : HandlesControlGameScore = new HandlesControlGame
 // Listeners
 const listeners : any = {
     'init': new InitListener(),
-    [handlesAnnouncements.name]: new AnnouncementsListener(handlesAnnouncements),
-    [handlesCharacter.name]: new CharacterListener(handlesCharacter),
-    [handlesEnemyTarget.name]: new EnemyTargetListener(handlesEnemyTarget),
-    [handlesFriendlyTarget.name]: new FriendlyTargetListener(handlesFriendlyTarget),
-    [handlesControlGame.name]: new ControlGameListener(handlesControlGame),
-    [handlesControlGameScore.name]: new ControlGameScoreListener(handlesControlGameScore)
+    [handlesAnnouncements.topic]: new AnnouncementsListener(handlesAnnouncements),
+    [handlesCharacter.topic]: new CharacterListener(handlesCharacter),
+    [handlesEnemyTarget.topic]: new EnemyTargetListener(handlesEnemyTarget),
+    [handlesFriendlyTarget.topic]: new FriendlyTargetListener(handlesFriendlyTarget),
+    [handlesControlGame.topic]: new ControlGameListener(handlesControlGame),
+    [handlesControlGameScore.topic]: new ControlGameScoreListener(handlesControlGameScore)
 };
 
 // Event Emitter.  A single instance of event emitter handles all cu-events events

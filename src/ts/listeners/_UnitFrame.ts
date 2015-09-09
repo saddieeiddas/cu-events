@@ -61,7 +61,7 @@ export default class UnitFrameListener {
 	listening: boolean = false;
 	topic: string;
 	constructor(handles: any) {
-		this.topic = handles.name;
+		this.topic = handles.topic;
 	}
 	start(emitter : EventEmitter) : void {
 		if (!this.listening) {

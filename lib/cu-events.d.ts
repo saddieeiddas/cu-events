@@ -29,7 +29,7 @@ declare module '__cu-events/classes/HandlesAnnouncements' {
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
     export default class HandlesAnnouncements {
-        name: string;
+        topic: string;
     }
 }
 
@@ -40,7 +40,7 @@ declare module '__cu-events/classes/HandlesCharacter' {
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
     export default class HandlesCharacter {
-        name: string;
+        topic: string;
     }
 }
 
@@ -51,7 +51,7 @@ declare module '__cu-events/classes/HandlesEnemyTarget' {
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
     export default class HandlesEnemyTarget {
-        name: string;
+        topic: string;
     }
 }
 
@@ -62,7 +62,7 @@ declare module '__cu-events/classes/HandlesFriendlyTarget' {
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
     export default class HandlesFriendlyTarget {
-        name: string;
+        topic: string;
     }
 }
 
@@ -73,7 +73,7 @@ declare module '__cu-events/classes/HandlesControlGame' {
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
     export default class HandlesControlGame {
-        name: string;
+        topic: string;
     }
 }
 
@@ -84,7 +84,7 @@ declare module '__cu-events/classes/HandlesControlGameScore' {
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
     export default class HandlesControlGameScore {
-        name: string;
+        topic: string;
     }
 }
 
