@@ -3,11 +3,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-
 import EventEmitter from '../classes/EventEmitter';
 import REST from 'cu-restapi';
 import HandlesControlGameScore from '../classes/HandlesControlGameScore';
-
+import { ControlGame, Population } from 'cu-core';
 declare const cuAPI: any;
 
 const POLL_INTERVAL = 5000;
@@ -33,8 +32,8 @@ function run(emitter: EventEmitter, topic: string) {
 
     // Get control game (score only)
     rest.controlGame({ includeControlPoints: false })
-      .then((data: any) => {
-        info.score = data;
+      .then((data: ControlGame) => {
+        info.score = new ControlGame(data);
         done();
       }, (status: string, errorThrown: string) => {
         info.error = { status: status, reason: errorThrown };
@@ -43,8 +42,8 @@ function run(emitter: EventEmitter, topic: string) {
 
     // and player counts
     rest.players()
-      .then((data: any) => {
-        info.players = data;
+      .then((data: Population) => {
+        info.players = new Population(data);
         done();
       }, (status: string, errorThrown: string) => {
         info.error = { status: status, reason: errorThrown };
