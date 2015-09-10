@@ -3,30 +3,32 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 import EventEmitter from '../classes/EventEmitter';
 import HandlesAnnouncements from '../classes/HandlesAnnouncements';
+
 declare const cuAPI: any;
 
 function run(emitter: EventEmitter, topic: string) {
-	cuAPI.OnAnnouncement((message: string, type: number) => {
-		emitter.emit(topic, {
-			message: message,
-			type: type
-		});
-	});
+  cuAPI.OnAnnouncement((message: string, type: number) => {
+    emitter.emit(topic, {
+      message: message,
+      type: type
+    });
+  });
 }
 
 export default class AnnouncementsListener {
-	listening: boolean = false;
-	type: string;
-	handles: HandlesAnnouncements;
-	constructor(handles: HandlesAnnouncements) {
-		this.handles = handles;
-	}
-	start(emitter : EventEmitter) : void {
-		if (!this.listening) {
-			this.listening = true;
-			run(emitter, this.handles.topic);
-		}
-	}
+  listening: boolean = false;
+  type: string;
+  handles: HandlesAnnouncements;
+  constructor(handles: HandlesAnnouncements) {
+    this.handles = handles;
+  }
+  start(emitter: EventEmitter): void {
+    if (!this.listening) {
+      this.listening = true;
+      run(emitter, this.handles.topic);
+    }
+  }
 }

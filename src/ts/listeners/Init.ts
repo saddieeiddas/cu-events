@@ -13,7 +13,7 @@
 // ensure it is started, this allows this listener to respond to post
 // init requests for notification that initialsiation has accured.
 // It also checks a listener's once property which if set causes the
-// registered handler to be deregistered as soon as it is fired, 
+// registered handler to be deregistered as soon as it is fired,
 // (once time only events).
 //
 //	Usage:
@@ -30,29 +30,29 @@ declare const cuAPI: any;
 const EVENT_NAME = 'init';
 let initialised = false;
 
-function run(emitter : EventEmitter) {
-	function notify() {
-		emitter.emit(EVENT_NAME, {});
-	}
-	if (initialised) {
-		notify();
-	} else {
-		cuAPI.OnInitialized(() => {
-			initialised = true;
-			notify();
-		});
-	}
+function run(emitter: EventEmitter) {
+  function notify() {
+    emitter.emit(EVENT_NAME, {});
+  }
+  if (initialised) {
+    notify();
+  } else {
+    cuAPI.OnInitialized(() => {
+      initialised = true;
+      notify();
+    });
+  }
 }
 
 export default class InitListener {
-	once: boolean;
-	constructor() {
-		this.once = true;
-	}
-	start(emitter : EventEmitter) : void {
-		// for the init listener, we always want to run it
-		// because it may be called post-init, in which case
-		// it needs to fire the handler immediately
-		run(emitter);
-	}
+  once: boolean;
+  constructor() {
+    this.once = true;
+  }
+  start(emitter: EventEmitter): void {
+    // for the init listener, we always want to run it
+    // because it may be called post-init, in which case
+    // it needs to fire the handler immediately
+    run(emitter);
+  }
 }

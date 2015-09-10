@@ -1,12 +1,49 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "noImplicitAny": true,
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "outDir": "./lib",
-    "sourceMap": false,
-    "definition": true,
-    "jsx": "react"
-  }
+    "compilerOptions": {
+        "target": "es6",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "outDir": "./tmp",
+        "sourceMap": false,
+        "jsx": "react"
+    },
+    "formatCodeOptions": {
+        "indentSize": 2,
+        "tabSize": 2,
+        "newLineCharacter": "\r\n",
+        "convertTabsToSpaces": true,
+        "insertSpaceAfterCommaDelimiter": true,
+        "insertSpaceAfterSemicolonInForStatements": true,
+        "insertSpaceBeforeAndAfterBinaryOperators": true,
+        "insertSpaceAfterKeywordsInControlFlowStatements": true,
+        "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+        "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+        "placeOpenBraceOnNewLineForFunctions": false,
+        "placeOpenBraceOnNewLineForControlBlocks": false
+    },
+    "compileOnSave": false,
+    "buildOnSave": false,
+    "filesGlob": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+    ],
+    "files": [
+        "./src/ts/classes/EventEmitter.ts",
+        "./src/ts/classes/HandlesAnnouncements.ts",
+        "./src/ts/classes/HandlesCharacter.ts",
+        "./src/ts/classes/HandlesControlGame.ts",
+        "./src/ts/classes/HandlesControlGameScore.ts",
+        "./src/ts/classes/HandlesEnemyTarget.ts",
+        "./src/ts/classes/HandlesFriendlyTarget.ts",
+        "./src/ts/listeners/Announcements.ts",
+        "./src/ts/listeners/Character.ts",
+        "./src/ts/listeners/ControlGame.ts",
+        "./src/ts/listeners/ControlGameScore.ts",
+        "./src/ts/listeners/EnemyTarget.ts",
+        "./src/ts/listeners/FriendlyTarget.ts",
+        "./src/ts/listeners/Init.ts",
+        "./src/ts/listeners/_UnitFrame.ts",
+        "./src/ts/main.ts",
+        "./src/tsd/tsd.d.ts"
+    ]
 }

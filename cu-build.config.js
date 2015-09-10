@@ -4,14 +4,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-var projectName = 'cu-events';
+var name = 'cu-events';
 
 module.exports = {
   type: 'library',
   path: __dirname,
-  name: projectName,
-  publish: {
-    jsOutput: './lib',
-    tsdOutput: './definitions/'
+  name: name,
+  bundle: {
+    base: 'js',
   },
 };
