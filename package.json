@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "reflux": "^0.2.12",
-    "cu-core": "^0.1.3",
+    "cu-core": "^0.1.8",
     "cu-restapi": "git+https://github.com/Mehuge/cu-restapi.git#master"
   },
   "devDependencies": {
