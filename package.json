@@ -20,6 +20,10 @@
     "README.md",
     "LICENSE"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CUModSquad/cu-events.git"
+  },
   "dependencies": {
     "reflux": "^0.2.12",
     "cu-core": "^0.1.8",
