@@ -1,6 +1,6 @@
 {
   "name": "cu-events",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Camelot Unchained Client Library - Events",
   "license": "MPL-2.0",
   "main": "lib/main.js",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "cu-build-tools": "git+https://github.com/CUModSquad/cu-build-tools.git#master"
+    "cu-build-tools": "^0.1.8"
   },
   "typescript": {
     "definition": "./lib/cu-events.d.ts"
